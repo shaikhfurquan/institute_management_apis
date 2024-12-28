@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config()
 import http from 'http'
 import { app } from './app.js'
-import { connectToDB } from './db/connectDB.js';
+import { connectToDB } from './config/db.config.js';
 
 const server = http.createServer(app)
 
