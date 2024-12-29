@@ -1,0 +1,12 @@
+USER APIS
+
+SIGNUP USER API
+POST  ==>  http://localhost:6060/api/user/register
+
+CURL:
+curl --location 'http://localhost:6060/api/user/register' \
+--form 'firstName="fname"' \
+--form 'image=@"/C:/Users/intel/Downloads/profile-8268938_640.webp"' \
+--form 'lastName="lname"' \
+--form 'email="sf@gmail.com"' \
+--form 'password="123456"'
