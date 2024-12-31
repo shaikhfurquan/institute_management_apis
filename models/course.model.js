@@ -41,6 +41,6 @@ const courseSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Exporting the User model
-const CourseModel = mongoose.model('User', courseSchema);
+const CourseModel = mongoose.model('Course', courseSchema);
 
 export default CourseModel;
