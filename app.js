@@ -23,7 +23,7 @@ app.use(fileUpload({
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('*', (req, res) => {
+app.get('/test', (req, res) => {
     res.send('Welcome');
 })
 

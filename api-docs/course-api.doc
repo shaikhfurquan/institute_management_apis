@@ -1,0 +1,24 @@
+
+COURSE APIS
+
+ADD COURSE APIS:-
+POST  ==>  http://localhost:6060/api/course/add-course
+
+COURL:
+curl --location 'http://localhost:6060/api/course/add-course' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU2Njk5NzEsImV4cCI6MTczNTkyOTE3MX0.wuqByJ7aXS1M2OXdvao0G4F9urFEtoKTd-O4UkuD3Fw' \
+--form 'courseName="MERN"' \
+--form 'price="23000"' \
+--form 'description="MERN full stack"' \
+--form 'startDate="09/09/2024"' \
+--form 'endDate="09/12/2024"' \
+--form 'image=@"/C:/Users/intel/Downloads/laptop-png.jpg"'
+
+
+
+GET ALL COURSE  ADDED BY LOGIN USER:
+GET  ==>  http://localhost:6060/api/course/get-all
+
+CURL:
+curl --location 'http://localhost:6060/api/course/get-all' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU4NDE3OTUsImV4cCI6MTczNjEwMDk5NX0.UvHaQdr_tU-PFozTD1jSbQKl0aV4lgfRMKykMkVVY60'

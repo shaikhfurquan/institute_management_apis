@@ -41,3 +41,22 @@ export const addCourse = async (req, res, next) => {
         next(error);
     }
 }
+
+// GET ALL Course ADDED BY LOGIN USER
+export const getAllCourse = async (req, res, next) => {
+    try {
+        const getAllCourses = await CourseModel.find({courseAdmin : req.user._id})
+        if(!getAllCourses){
+            return res.status(200).json({message: 'Course not found'})
+        }
+        console.log(getAllCourses);
+        res.status(201).json({
+            message: "Course fetched successfully",
+            courseCount : getAllCourses.length,
+            courses : getAllCourses
+        })
+
+    } catch (error) {
+        next(error);
+    }
+}
