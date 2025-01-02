@@ -87,6 +87,9 @@ export const getCourseById = async (req, res, next) => {
 export const deleteCourseById = async (req, res, next) => {
     try {
         const course = await CourseModel.findById(req.params.courseId)
+        if (!course) {
+            return res.status(200).json({ message: 'Course not found' })
+        }
 
         // verifying that courseAdmin and logged in user
         if (String(course.courseAdminId) !== String(req.user._id)) {
@@ -108,3 +111,66 @@ export const deleteCourseById = async (req, res, next) => {
         next(error);
     }
 }
+
+
+// Update Course By ID (logged-in user)
+export const updateCourseById = async (req, res, next) => {
+    try {
+        // Retrieve the course by ID
+        let course = await CourseModel.findById(req.params.courseId);
+        if (!course) {
+            return res.status(200).json({ message: 'Course not found' });
+        }
+
+        // Verify the logged-in user is the course admin
+        if (String(course.courseAdminId) !== String(req.user._id)) {
+            return res.status(404).json({ message: "You are not allowed to update the course" });
+        }
+
+        // Initialize image object with the current course image
+        let updatedImage = course.image;
+
+        // Handle new image upload if provided
+        if (req.files?.image) {
+            // Delete the old image from Cloudinary
+            if (course.image?.public_id) {
+                await cloudinary.uploader.destroy(course.image.public_id);
+            }
+            // Upload the new image to Cloudinary
+            const uploadResponse = await cloudinary.uploader.upload(req.files.image.tempFilePath);
+            // Update the image object with new upload details
+            updatedImage = {
+                public_id: uploadResponse.public_id,
+                url: uploadResponse.secure_url
+            };
+        }
+
+        // Prepare the updated course data
+        const updatedCourse = {
+            courseName: req.body.courseName,
+            price: req.body.price,
+            description: req.body.description,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            image: updatedImage,
+            courseAdminId: req.user._id
+        };
+
+        // Update the course in the database
+        const updatedCourseDoc = await CourseModel.findByIdAndUpdate(req.params.courseId, updatedCourse, { new: true });
+
+        // Respond with the updated course details
+        return res.status(200).json({
+            message: "Course updated successfully",
+            course: updatedCourseDoc
+        });
+
+    } catch (error) {
+        // Handle invalid ID errors
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        // Handle other errors
+        next(error);
+    }
+};
