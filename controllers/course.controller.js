@@ -51,12 +51,33 @@ export const getAllCourse = async (req, res, next) => {
         }
         console.log(getAllCourses);
         res.status(201).json({
-            message: "Course fetched successfully",
+            message: "Courses fetched successfully",
             courseCount : getAllCourses.length,
             courses : getAllCourses
         })
 
     } catch (error) {
+        next(error);
+    }
+}
+
+
+// GET Course By Id(login user)
+export const getCourseById = async (req, res, next) => {
+    try {
+        const getCourseById = await CourseModel.findById(req.params.courseId)
+        if(!getCourseById){
+            return res.status(200).json({message: 'Course not found'})
+        }
+        res.status(201).json({
+            message: "Course fetched successfully",
+            course : getCourseById
+        })
+
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
         next(error);
     }
 }

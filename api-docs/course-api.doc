@@ -16,9 +16,21 @@ curl --location 'http://localhost:6060/api/course/add-course' \
 
 
 
+
 GET ALL COURSE  ADDED BY LOGIN USER:
 GET  ==>  http://localhost:6060/api/course/get-all
 
 CURL:
 curl --location 'http://localhost:6060/api/course/get-all' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU4NDE3OTUsImV4cCI6MTczNjEwMDk5NX0.UvHaQdr_tU-PFozTD1jSbQKl0aV4lgfRMKykMkVVY60'
+
+
+
+
+GET COURSE BY ID:
+          http://localhost:6060/api/course/get/67743db61be79a230ac24a64
+GET  ==>  http://localhost:6060/api/course/get/:courseId
+
+CURL:
+curl --location 'http://localhost:6060/api/course/get/67743db61be79a230ac24a64' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU4NDE3OTUsImV4cCI6MTczNjEwMDk5NX0.UvHaQdr_tU-PFozTD1jSbQKl0aV4lgfRMKykMkVVY60'
