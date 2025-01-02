@@ -28,7 +28,7 @@ export const addCourse = async (req, res, next) => {
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             image: image,
-            courseAdmin: req.user._id
+            courseAdminId: req.user._id
         })
         // save the course
         await course.save()
@@ -45,15 +45,15 @@ export const addCourse = async (req, res, next) => {
 // GET ALL Course ADDED BY LOGIN USER
 export const getAllCourse = async (req, res, next) => {
     try {
-        const getAllCourses = await CourseModel.find({courseAdmin : req.user._id})
-        if(!getAllCourses){
-            return res.status(200).json({message: 'Course not found'})
+        const getAllCourses = await CourseModel.find({ courseAdmin: req.user._id })
+        if (!getAllCourses) {
+            return res.status(200).json({ message: 'Course not found' })
         }
         console.log(getAllCourses);
         res.status(201).json({
             message: "Courses fetched successfully",
-            courseCount : getAllCourses.length,
-            courses : getAllCourses
+            courseCount: getAllCourses.length,
+            courses: getAllCourses
         })
 
     } catch (error) {
@@ -66,12 +66,39 @@ export const getAllCourse = async (req, res, next) => {
 export const getCourseById = async (req, res, next) => {
     try {
         const getCourseById = await CourseModel.findById(req.params.courseId)
-        if(!getCourseById){
-            return res.status(200).json({message: 'Course not found'})
+        if (!getCourseById) {
+            return res.status(200).json({ message: 'Course not found' })
         }
         res.status(201).json({
             message: "Course fetched successfully",
-            course : getCourseById
+            course: getCourseById
+        })
+
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}
+
+
+// delete Course By Id(login user)
+export const deleteCourseById = async (req, res, next) => {
+    try {
+        const course = await CourseModel.findById(req.params.courseId)
+
+        // verifying that courseAdmin and logged in user
+        if (String(course.courseAdminId) !== String(req.user._id)) {
+            return res.status(404).json({ message: "You are not allowed to delete the course" });
+        }
+        // deleting course
+        const deleteCourse = await CourseModel.findByIdAndDelete(req.params.courseId)
+        // deleting the course image from the cloudinary
+        cloudinary.uploader.destroy(course.image.public_id)
+
+        res.status(201).json({
+            message: "Course deleted successfully"
         })
 
     } catch (error) {

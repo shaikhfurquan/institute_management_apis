@@ -34,7 +34,7 @@ const courseSchema = new mongoose.Schema({
             required: [true, "Image URL is required"],
         },
     },
-    courseAdmin: {
+    courseAdminId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }

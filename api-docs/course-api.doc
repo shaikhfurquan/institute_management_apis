@@ -28,9 +28,20 @@ curl --location 'http://localhost:6060/api/course/get-all' \
 
 
 GET COURSE BY ID:
-          http://localhost:6060/api/course/get/67743db61be79a230ac24a64
-GET  ==>  http://localhost:6060/api/course/get/:courseId
+GET  ==>  http://localhost:6060/api/course/get/67743db61be79a230ac24a64
+          http://localhost:6060/api/course/get/:courseId
 
 CURL:
 curl --location 'http://localhost:6060/api/course/get/67743db61be79a230ac24a64' \
 --header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU4NDE3OTUsImV4cCI6MTczNjEwMDk5NX0.UvHaQdr_tU-PFozTD1jSbQKl0aV4lgfRMKykMkVVY60'
+
+
+
+DELETE COURSE BY ID
+DELETE  ==> http://localhost:6060/api/course/delete/6776e0c34131cb0f4198495a
+            http://localhost:6060/api/course/delete/:courseId
+
+CURL:
+curl --location --request DELETE 'http://localhost:6060/api/course/delete/6776e0c34131cb0f4198495a' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU4NDE3OTUsImV4cCI6MTczNjEwMDk5NX0.UvHaQdr_tU-PFozTD1jSbQKl0aV4lgfRMKykMkVVY60'
+
