@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload'
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import courseRouter from './routes/course.route.js';
+import studentRouter from './routes/student.route.js';
 
 
 const app = express();
@@ -28,8 +29,9 @@ app.get('/test', (req, res) => {
 })
 
 // routes
-app.use('/api/user' , userRouter)
-app.use('/api/course' , courseRouter)
+app.use('/api/user', userRouter)
+app.use('/api/course', courseRouter)
+app.use('/api/student', studentRouter)
 
 export { app }
 
