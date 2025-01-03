@@ -3,6 +3,7 @@ import CourseModel from "../models/course.model.js";
 import StudentModel from "../models/student.model.js";
 import fs from 'fs'
 
+
 export const addStudent = async (req, res, next) => {
     try {
         // Validate required fields
@@ -63,11 +64,33 @@ export const getAllStudent = async (req, res, next) => {
             return res.status(200).json({ message: 'Course not found' })
         }
         res.status(201).json({
-            message: "Courses fetched successfully",
+            message: "Students fetched successfully",
             studentCount: getAllStudent.length,
             students: getAllStudent
         })
 
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}
+
+
+// GET all own students by respected course/for a course
+export const getStudentsByCourse = async (req, res) => {
+    try {
+        const getStudentsByCourse = await StudentModel.find({ addedByUserId: req.user._id, courseId: req.params.courseId });
+        if (!getStudentsByCourse) {
+            return res.status(200).json({ message: 'Course/Students not found' })
+        }
+
+        res.status(200).json({
+            message: "Students with respected course fetched successfully",
+            studentsCount: getStudentsByCourse.length,
+            students: getStudentsByCourse
+        })
     } catch (error) {
         if (error.name === "CastError") {
             return res.status(400).json({ message: "Invalid ID", error: error.message });
