@@ -13,3 +13,11 @@ curl --location 'http://localhost:6060/api/student/add-student' \
 --form 'phone="8379"' \
 --form 'image=@"/C:/Users/intel/Downloads/linux-image.jpg"' \
 --form 'courseId="6776e7b65c6ecb5e597b406c"'
+
+
+GET ALL STUDENT
+GET  ==>  http://localhost:6060/api/student/get-all
+
+CURL:
+curl --location 'http://localhost:6060/api/student/get-all' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU5MjEzNTYsImV4cCI6MTczNjE4MDU1Nn0.ChW91BOwl8ZfLmbZWRjJy5CFbH2LcwRLwGI2CFLVcm0'

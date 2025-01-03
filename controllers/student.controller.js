@@ -37,7 +37,7 @@ export const addStudent = async (req, res, next) => {
             address: req.body.address,
             courseId: req.body.courseId,
             image: image,
-            userId: req.user._id
+            addedByUserId: req.user._id
         })
         // save the course
         await student.save()
@@ -47,8 +47,31 @@ export const addStudent = async (req, res, next) => {
         })
 
     } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
         next(error);
     }
 }
 
 
+// GET ALL Students ADDED BY LOGIN/OWN USER
+export const getAllStudent = async (req, res, next) => {
+    try {
+        const getAllStudent = await StudentModel.find({ addedByUserId: req.user._id })
+        if (!getAllStudent) {
+            return res.status(200).json({ message: 'Course not found' })
+        }
+        res.status(201).json({
+            message: "Courses fetched successfully",
+            studentCount: getAllStudent.length,
+            students: getAllStudent
+        })
+
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}

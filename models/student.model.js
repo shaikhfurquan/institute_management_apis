@@ -36,7 +36,7 @@ const studentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course"
     },
-    userId: {
+    addedByUserId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }
