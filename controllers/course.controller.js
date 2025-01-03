@@ -53,7 +53,7 @@ export const addCourse = async (req, res, next) => {
 // GET ALL Course ADDED BY LOGIN USER
 export const getAllCourse = async (req, res, next) => {
     try {
-        const getAllCourses = await CourseModel.find({ courseAdmin: req.user._id })
+        const getAllCourses = await CourseModel.find({ courseAdminId: req.user._id })
         if (!getAllCourses) {
             return res.status(200).json({ message: 'Course not found' })
         }
