@@ -154,11 +154,11 @@ export const updateCourseById = async (req, res, next) => {
         }
 
         // Delete the image from the local temp folder
-        fs.unlink(req.files.image.tempFilePath, (err) => {
-            if (err) {
-                console.error("Error while deleting temp file:", err.message);
-            }
-        });
+        // fs.unlink(req.files.image.tempFilePath, (err) => {
+        //     if (err) {
+        //         console.error("Error while deleting temp file:", err.message);
+        //     }
+        // });
 
         // Prepare the updated course data
         const updatedCourse = {
