@@ -1,7 +1,8 @@
 USER APIS
 
-SIGNUP USER API
+USER REGISTER API:
 POST  ==>  http://localhost:6060/api/user/register
+
 
 CURL:
 curl --location 'http://localhost:6060/api/user/register' \
@@ -10,3 +11,21 @@ curl --location 'http://localhost:6060/api/user/register' \
 --form 'lastName="lname"' \
 --form 'email="sf@gmail.com"' \
 --form 'password="123456"'
+
+
+
+USER LOGIN API
+POST  ==>  http://localhost:6060/api/user/login
+{
+    "email" : "sf@gmail.com",
+    "password" : "123456"
+}
+
+CURL:
+curl --location 'http://localhost:6060/api/user/login' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU5MjEzNTYsImV4cCI6MTczNjE4MDU1Nn0.ChW91BOwl8ZfLmbZWRjJy5CFbH2LcwRLwGI2CFLVcm0' \
+--data-raw '{
+    "email" : "sf@gmail.com",
+    "password" : "123456"
+}'
