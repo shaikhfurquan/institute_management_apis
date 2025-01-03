@@ -1,5 +1,6 @@
 import cloudinary from "../config/cloudinary.config.js";
 import UserModel from "../models/user.model.js";
+import fs from 'fs'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
 
@@ -22,6 +23,13 @@ export const registerUser = async (req, res, next) => {
             public_id: result.public_id,
             url: result.secure_url
         }
+
+         // Delete the image from the local temp folder
+                fs.unlink(req.files.image.tempFilePath, (err) => {
+                    if (err) {
+                        console.error("Error while deleting temp file:", err.message);
+                    }
+                });
 
         // checking if the user already exists
         const existingUser = await UserModel.findOne({ email: req.body.email })
