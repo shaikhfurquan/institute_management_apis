@@ -79,7 +79,7 @@ export const getAllStudent = async (req, res, next) => {
 
 
 // GET all own students by respected course/for a course
-export const getStudentsByCourse = async (req, res) => {
+export const getStudentsByCourse = async (req, res, next) => {
     try {
         const getStudentsByCourse = await StudentModel.find({ addedByUserId: req.user._id, courseId: req.params.courseId });
         if (!getStudentsByCourse) {
@@ -197,3 +197,23 @@ export const updateStudentById = async (req, res, next) => {
         next(error);
     }
 };
+
+
+// GET latest 5 student added by login user
+export const getLatestStudents = async (req, res, next) => {
+    try {
+        const latestStudent = await StudentModel.find({ addedByUserId: req.user.id })
+            .sort({ $natural: -1 }).limit(5)
+
+        res.status(200).json({
+            message: "Latest Students fetched successfully",
+            latestStudent
+
+        })
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}

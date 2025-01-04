@@ -189,3 +189,23 @@ export const updateCourseById = async (req, res, next) => {
         next(error);
     }
 };
+
+
+// GET latest 5 course added by login user
+export const getLatestFiveCourses = async (req, res, next) => {
+    try {
+        const latestFiveCourse = await CourseModel.find({ courseAdminId: req.user.id })
+            .sort({ $natural: -1 }).limit(5)
+
+        res.status(200).json({
+            message: "Latest five Course fetched successfully",
+            latestFiveCourse
+
+        })
+    } catch (error) {
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid ID", error: error.message });
+        }
+        next(error);
+    }
+}

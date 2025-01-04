@@ -70,3 +70,12 @@ curl --location --request PUT 'http://localhost:6060/api/course/update/6776e7b65
 --form 'description="MERN/PERN full stack"' \
 --form 'startDate="09/09/2024"' \
 --form 'endDate="09/12/2024"'
+
+
+
+GET LATEST FIVE COURSE
+GET  ==>  http://localhost:6060/api/course/latest-courses
+
+CURL:
+curl --location 'http://localhost:6060/api/course/latest-courses' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU5NzU2NTgsImV4cCI6MTczNjIzNDg1OH0.uEuc1aZ5pDnWqaWcjMJuj87k3lxNOO7nEC-nfzrTYvk'

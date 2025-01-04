@@ -70,3 +70,11 @@ curl --location --request PUT 'http://localhost:6060/api/student/update/677841d2
 --form 'address="M.H"' \
 --form 'phone="837985"' \
 --form 'courseId="6776e7b65c6ecb5e597b406c"'
+
+
+GET LATEST 5 STUDENTS
+GET  ==>  http://localhost:6060/api/student/get/latest-students
+
+CURL:
+curl --location 'http://localhost:6060/api/student/get/latest-students' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU5NzU2NTgsImV4cCI6MTczNjIzNDg1OH0.uEuc1aZ5pDnWqaWcjMJuj87k3lxNOO7nEC-nfzrTYvk'
