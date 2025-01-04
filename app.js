@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import courseRouter from './routes/course.route.js';
 import studentRouter from './routes/student.route.js';
+import feeRouter from './routes/fee.route.js';
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.get('/test', (req, res) => {
 app.use('/api/user', userRouter)
 app.use('/api/course', courseRouter)
 app.use('/api/student', studentRouter)
+app.use('/api/fee', feeRouter)
 
 export { app }
 
