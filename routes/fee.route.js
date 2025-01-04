@@ -4,9 +4,9 @@ import { addFee, getAllFeeStudentCourse, getFeeCollectionData } from '../control
 
 const feeRouter = express.Router();
 
-feeRouter.post('/add-fee' , isAuth , addFee)
-feeRouter.get('/fee-history' , isAuth , getFeeCollectionData)
-feeRouter.get('/all-fee' , isAuth , getAllFeeStudentCourse)
+feeRouter.post('/add-fee', isAuth, addFee)
+feeRouter.get('/fee-history', isAuth, getFeeCollectionData)
+feeRouter.get('/all-fee', isAuth, getAllFeeStudentCourse)
 
 
 export default feeRouter

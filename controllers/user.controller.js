@@ -24,12 +24,12 @@ export const registerUser = async (req, res, next) => {
             url: result.secure_url
         }
 
-         // Delete the image from the local temp folder
-                fs.unlink(req.files.image.tempFilePath, (err) => {
-                    if (err) {
-                        console.error("Error while deleting temp file:", err.message);
-                    }
-                });
+        // Delete the image from the local temp folder
+        fs.unlink(req.files.image.tempFilePath, (err) => {
+            if (err) {
+                console.error("Error while deleting temp file:", err.message);
+            }
+        });
 
         // checking if the user already exists
         const existingUser = await UserModel.findOne({ email: req.body.email })
