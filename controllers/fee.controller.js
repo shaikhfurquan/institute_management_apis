@@ -44,3 +44,20 @@ export const getFeeCollectionData = async (req, res, next) => {
         next(error);
     }
 }
+
+
+// GET all fee for any students in a course
+export const getAllFeeStudentCourse = async (req, res, next) => {
+    try {
+        console.log("req.query", req.query);
+        const getAllFeeStudentCourse = await FeeModel.find({ collectByUserId: req.user._id, courseId: req.query.courseId, phone: req.query.phone })
+
+        res.status(200).json({
+            message: "All fess for srudent course fetched successfully",
+            getAllFeeStudentCourse
+        })
+
+    } catch (error) {
+        next(error);
+    }
+}
