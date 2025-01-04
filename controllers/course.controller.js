@@ -59,7 +59,7 @@ export const getAllCourse = async (req, res, next) => {
             return res.status(200).json({ message: 'Course not found' })
         }
         console.log(getAllCourses);
-        res.status(201).json({
+        res.status(200).json({
             message: "Courses fetched successfully",
             courseCount: getAllCourses.length,
             courses: getAllCourses
@@ -80,7 +80,7 @@ export const getCourseById = async (req, res, next) => {
         }
         // finding the students associated with the course
         const students = await StudentModel.find({ courseId: req.params.courseId })
-        res.status(201).json({
+        res.status(200).json({
             message: "Course fetched successfully",
             course: getCourseById,
             studentsLists: students
@@ -112,7 +112,7 @@ export const deleteCourseById = async (req, res, next) => {
         // deleting the course image from the cloudinary
         cloudinary.uploader.destroy(course.image.public_id)
 
-        res.status(201).json({
+        res.status(200).json({
             message: "Course deleted successfully"
         })
 

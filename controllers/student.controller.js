@@ -63,7 +63,7 @@ export const getAllStudent = async (req, res, next) => {
         if (!getAllStudent) {
             return res.status(200).json({ message: 'Course not found' })
         }
-        res.status(201).json({
+        res.status(200).json({
             message: "Students fetched successfully",
             studentCount: getAllStudent.length,
             students: getAllStudent

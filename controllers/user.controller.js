@@ -82,7 +82,7 @@ export const loginUser = async (req, res, next) => {
 
         const token = jwt.sign({ _id: user._id, }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRESIN })
         user.password = undefined
-        res.status(201).cookie("token", token).json({
+        res.status(200).cookie("token", token).json({
             messsage: `Welcome ${user.firstName} ${user.lastName}`,
             token,
             user
