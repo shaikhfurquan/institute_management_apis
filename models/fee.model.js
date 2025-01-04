@@ -9,8 +9,8 @@ const feeSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: [true, 'Phone number is required'],
-        // minlength: [10, 'Phone number must be exact 10 digits long'],
-        // maxlength: [10, 'Phone number must be exact 10 digits long'],
+        minlength: [10, 'Phone number must be exact 10 digits long'],
+        maxlength: [10, 'Phone number must be exact 10 digits long'],
         trim: true,
     },
     email: {

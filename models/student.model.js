@@ -9,6 +9,9 @@ const studentSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: [true, 'Phone number is required'],
+        unique: [true, 'Phone number should be unique'],
+        minlength: [10, 'Phone number must be exact 10 digits long'],
+        maxlength: [10, 'Phone number must be exact 10 digits long'],
         trim: true,
     },
     email: {
