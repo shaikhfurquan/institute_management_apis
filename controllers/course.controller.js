@@ -1,5 +1,6 @@
 import cloudinary from "../config/cloudinary.config.js";
 import CourseModel from "../models/course.model.js";
+import StudentModel from "../models/student.model.js";
 import fs from 'fs'
 
 export const addCourse = async (req, res, next) => {
@@ -77,9 +78,12 @@ export const getCourseById = async (req, res, next) => {
         if (!getCourseById) {
             return res.status(200).json({ message: 'Course not found' })
         }
+        // finding the students associated with the course
+        const students = await StudentModel.find({ courseId: req.params.courseId })
         res.status(201).json({
             message: "Course fetched successfully",
-            course: getCourseById
+            course: getCourseById,
+            studentsLists: students
         })
 
     } catch (error) {
