@@ -29,3 +29,18 @@ export const addFee = async (req, res, next) => {
         next(error);
     }
 }
+
+// GET all fee collection data of login user for any student
+export const getFeeCollectionData = async (req, res, next) => {
+    try {
+        const getFeeCollectionData = await FeeModel.find({ collectByUserId: req.user._id })
+
+        res.status(200).json({
+            message: "Fee history successfully",
+            feeHistory: getFeeCollectionData
+        })
+
+    } catch (error) {
+        next(error);
+    }
+}

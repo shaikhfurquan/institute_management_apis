@@ -24,3 +24,12 @@ curl --location 'http://localhost:6060/api/fee/add-fee' \
     "courseId" : "6776f7d79849b792ab8edcf1",
     "remark" : "Fee for the python course"
 }'
+
+
+
+GET FEE HISTORY
+GET  ==>  http://localhost:6060/api/fee/fee-history
+
+CURL:
+curl --location 'http://localhost:6060/api/fee/fee-history' \
+--header 'Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzcxMjNhNGJmZmEwYjk5NjZiMDU5M2YiLCJpYXQiOjE3MzU5OTU1NTYsImV4cCI6MTczNjI1NDc1Nn0.YKI5TCNlRqryG7E-alDPFcfFK7_ae4pK8-KYWBuJIeY'
