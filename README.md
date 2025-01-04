@@ -1,35 +1,29 @@
-# institute_management_apis
-
-# User, Course, Student, and Fee APIs
+# Institute Management APIs
 
 This document provides an overview of the available APIs for user registration, login, course management, student management, and fee management.
 
-## Available APIs
-
-### User APIs
-- [User  Register API](#user-register-api): `POST /api/user/register` - Allows new users to register by providing their details.
-- [User  Login API](#user-login-api): `POST /api/user/login` - Authenticates users and provides a token for subsequent requests.
-
-### Course APIs
-- [Add Course API](#add-course-api): `POST /api/course/add-course` - Enables instructors to add new courses to the platform.
-- [Get All Courses](#get-all-courses-added-by-logged-in-user): `GET /api/course/get-all` - Retrieves all courses added by the logged-in user.
-- [Get Course by ID](#get-course-by-id): `GET /api/course/get/:courseId` - Fetches details of a specific course using its ID.
-- [Delete Course by ID](#delete-course-by-id): `DELETE /api/course/delete/:courseId` - Removes a course from the platform using its ID.
-- [Update Course](#update-course): `PUT /api/course/update/:courseId` - Updates the details of an existing course.
-- [Get Latest Five Courses](#get-latest-five-courses): `GET /api/course/latest-courses` - Retrieves the five most recently added courses.
-
-### Student APIs
-- [Add Student API](#add-student-api): `POST /api/student/add-student` - Allows instructors to enroll new students in courses.
-- [Get All Students](#get-all-students): `GET /api/student/get-all` - Retrieves a list of all students enrolled in the platform.
-- [Get All Students for a Course](#get-all-students-for-a-course): `GET /api/student/get-all/:courseId` - Fetches all students enrolled in a specific course.
-- [Delete Student by ID](#delete-student-by-id): `DELETE /api/student/delete/:studentId` - Removes a student from the platform using their ID.
-- [Update Student by ID](#update-student-by-id): `PUT /api/student/update/:studentId` - Updates the details of an existing student.
-- [Get Latest 5 Students](#get-latest-5-students): `GET /api/student/get/latest-students` - Retrieves the five most recently added students.
-
-### Fee APIs
-- [Add Fee API](#add-fee-api): `POST /api/fee/add-fee` - Allows instructors to record fee payments made by students.
-- [Get Fee History](#get-fee-history): `GET /api/fee/fee-history` - Retrieves the fee payment history for the logged-in user.
-- [Get All Fees for a Student in a Course](#get-all-fees-for-a-student-in-a-course): `GET /api/fee/all-fee/?courseId={courseId}&phone={phone}` - Fetches all fee records for a specific student in a course.
+## Table of Contents
+- [User  APIs](#user-apis)
+  - [User  Register API](#user-register-api)
+  - [User  Login API](#user-login-api)
+- [Course APIs](#course-apis)
+  - [Add Course API](#add-course-api)
+  - [Get All Courses](#get-all-courses)
+  - [Get Course by ID](#get-course-by-id)
+  - [Delete Course by ID](#delete-course-by-id)
+  - [Update Course](#update-course)
+  - [Get Latest Five Courses](#get-latest-five-courses)
+- [Student APIs](#student-apis)
+  - [Add Student API](#add-student-api)
+  - [Get All Students](#get-all-students)
+  - [Get All Students for a Course](#get-all-students-for-a-course)
+  - [Delete Student by ID](#delete-student-by-id)
+  - [Update Student by ID](#update-student-by-id)
+  - [Get Latest 5 Students](#get-latest-5-students)
+- [Fee APIs](#fee-apis)
+  - [Add Fee API](#add-fee-api)
+  - [Get Fee History](#get-fee-history)
+  - [Get All Fees for a Student in a Course](#get-all-fees-for-a-student-in-a-course)
 
 ---
 
@@ -62,7 +56,6 @@ This document provides an overview of the available APIs for user registration, 
     ```bash
     curl --location 'http://localhost:6060/api/user/login' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: token=YOUR_TOKEN_HERE' \
     --data-raw '{
         "email": "sf@gmail.com",
         "password": "123456"
@@ -86,7 +79,7 @@ This document provides an overview of the available APIs for user registration, 
     --form 'image=@"/C:/Users/intel/Downloads/laptop-png.jpg"'
     ```
 
-### Get All Courses Added by Logged-in User
+### Get All Courses
 - **Endpoint:** `GET http://localhost:6060/api/course/get-all`
 - **Purpose:** Retrieves all courses added by the logged-in user.
 - **CURL Example:**
@@ -109,7 +102,7 @@ This document provides an overview of the available APIs for user registration, 
 - **Purpose:** Removes a course from the platform using its ID.
 - **CURL Example:**
     ```bash
-    curl --location --request DELETE 'http://localhost:6060/api/course/delete/COURSE_ID_HERE' \
+    curl --location --request DELETE 'http://localhost:6060/api/course/delete/COURSE_ID _HERE' \
     --header 'Cookie: YOUR_TOKEN_HERE'
     ```
 
@@ -226,7 +219,7 @@ This document provides an overview of the available APIs for user registration, 
     curl --location 'http://localhost:6060/api/fee/add-fee' \
     --header 'Content-Type: application/json' \
     --header 'Cookie: YOUR_TOKEN_HERE' \
-    --data-raw ' {
+    --data-raw '{
         "fullName": "std1",
         "phone": "1010101010",
         "email": "std1@gmail.com",
