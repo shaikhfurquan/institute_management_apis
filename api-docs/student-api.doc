@@ -10,7 +10,7 @@ curl --location 'http://localhost:6060/api/student/add-student' \
 --form 'fullName="std"' \
 --form 'email="std@gmail.com"' \
 --form 'address="M.H"' \
---form 'phone="8379"' \
+--form 'phone="1010101010"' \
 --form 'image=@"/C:/Users/intel/Downloads/linux-image.jpg"' \
 --form 'courseId="6776e7b65c6ecb5e597b406c"'
 
@@ -57,7 +57,7 @@ curl --location --request PUT 'http://localhost:6060/api/student/update/677841d2
 --form 'fullName="std3"' \
 --form 'email="std3@gmail.com"' \
 --form 'address="M.H......."' \
---form 'phone="837985"' \
+--form 'phone="1010101010"' \
 --form 'image=@"/C:/Users/intel/Downloads/std1.jpg"' \
 --form 'courseId="6776e7b65c6ecb5e597b406c"'
 
@@ -68,7 +68,7 @@ curl --location --request PUT 'http://localhost:6060/api/student/update/677841d2
 --form 'fullName="std3"' \
 --form 'email="std3@gmail.com"' \
 --form 'address="M.H"' \
---form 'phone="837985"' \
+--form 'phone="1010101010"' \
 --form 'courseId="6776e7b65c6ecb5e597b406c"'
 
 
